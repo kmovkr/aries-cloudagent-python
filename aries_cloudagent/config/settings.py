@@ -26,11 +26,15 @@ class Settings(BaseSettings):
             var_names: A list of variable name alternatives
             default: The default value to return if none are defined
         """
-        print("printing values-------------------------------")
+        
         for k in var_names:
             if k in self._values:
-                print(self._values[k])
+                print("---------------------Start-printing Settings values-------------------------------")
+                print("KEY: ", k, "VALUE: ",self._values[k])
+                print("----------------------End-printing Settings values-------------------------------")
                 return self._values[k]
+                
+
         return default
 
     def set_value(self, var_name: str, value):
