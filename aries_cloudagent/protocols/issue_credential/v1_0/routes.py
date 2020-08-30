@@ -492,7 +492,6 @@ async def credential_exchange_send(request: web.BaseRequest):
     r_time = get_timer()
 
     context = request.app["request_context"]
-    print(context.settings())
     outbound_handler = request.app["outbound_message_router"]
     print("context",context)
     print("ooutbound_handler",outbound_handler)
