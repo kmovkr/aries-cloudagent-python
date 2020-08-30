@@ -29,9 +29,9 @@ class Settings(BaseSettings):
         
         for k in var_names:
             if k in self._values:
-                print("---------------------Start-printing Settings values-------------------------------")
-                print("KEY: ", k, "VALUE: ",self._values[k])
-                print("----------------------End-printing Settings values-------------------------------")
+                # print("---------------------Start-printing Settings values-------------------------------")
+                # print("KEY: ", k, "VALUE: ",self._values[k])
+                # print("----------------------End-printing Settings values-------------------------------")
                 return self._values[k]
                 
 
