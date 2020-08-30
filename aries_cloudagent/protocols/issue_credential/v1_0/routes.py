@@ -493,8 +493,15 @@ async def credential_exchange_send(request: web.BaseRequest):
 
     context = request.app["request_context"]
     outbound_handler = request.app["outbound_message_router"]
+    print("context",context)
+    print("ooutbound_handler",outbound_handler)
+    print("-"*20)
 
     body = await request.json()
+    print(body)
+    print("-"*20)
+
+    
 
     comment = body.get("comment")
     connection_id = body.get("connection_id")
@@ -704,6 +711,8 @@ async def credential_exchange_create_free_offer(request: web.BaseRequest):
 
     context = request.app["request_context"]
     outbound_handler = request.app["outbound_message_router"]
+    print(context)
+    print(outbound_handler)
 
     body = await request.json()
 
@@ -742,6 +751,7 @@ async def credential_exchange_create_free_offer(request: web.BaseRequest):
     endpoint = did_info.metadata.get(
         "endpoint", context.settings.get("default_endpoint")
     )
+    print(endpoint)
     if not endpoint:
         raise web.HTTPBadRequest(reason="An endpoint for the public DID is required")
 
