@@ -52,6 +52,7 @@ async def connections_send_message(request: web.BaseRequest):
     if connection.is_ready:
         msg = BasicMessage(content=params["content"])
         await outbound_handler(msg, connection_id=connection_id)
+        
 
     return web.json_response({})
 
