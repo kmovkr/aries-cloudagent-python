@@ -137,10 +137,10 @@ class Dispatcher:
 
         error_result = None
         try:
-            print("-------------MESSAGE-----------------------")
+            print("-------------MESSAGE START-----------------------")
             print(inbound_message.payload)
             message = await self.make_message(inbound_message.payload)
-            print(message)
+            print("-------------MESSAGE END-------------------------")
         except MessageParseError as e:
             LOGGER.error(f"Message parsing failed: {str(e)}, sending problem report")
             error_result = ProblemReport(explain_ltxt=str(e))
