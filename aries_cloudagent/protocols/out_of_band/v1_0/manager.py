@@ -334,7 +334,9 @@ class OutOfBandManager:
                 presentation_exchange_record=proof_message)
             print("-" * 10, "pre_ex_id", "-" * 10)
             print(pre_ex_id)
-        else:
+
+            return pre_ex_id
+
             print([
                 pfx.qualify("present-proof/1.0/request-presentation")
                 for pfx in DIDCommPrefix
