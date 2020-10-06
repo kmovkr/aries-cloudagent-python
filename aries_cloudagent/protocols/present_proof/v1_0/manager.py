@@ -456,11 +456,7 @@ class PresentationManager:
         presentation = self.context.message.indy_proof()
 
         thread_id = self.context.message._thread_id
-        connection_id_filter = (
-            {"connection_id": self.context.connection_record.connection_id}
-            if self.context.connection_record is not None
-            else None
-        )
+        connection_id_filter = None
         (
             presentation_exchange_record
         ) = await V10PresentationExchange.retrieve_by_tag_filter(
