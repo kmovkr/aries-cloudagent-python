@@ -311,6 +311,9 @@ class OutOfBandManager:
             print("-"*10, "connection_id", "-"*10)
             print(connection._id)
 
+            print("-"*10, "connection", "-"*10)
+            print(connection)
+
             request_attach = invitation_message.request_attach
             print("-" * 10, "request_attach", "-" * 10)
             print(request_attach)
