@@ -3,6 +3,8 @@
 import json
 import logging
 import time
+import pickle
+import os.path
 
 from ....revocation.models.revocation_registry import RevocationRegistry
 from ....config.injection_context import InjectionContext
@@ -304,6 +306,16 @@ class PresentationManager:
         credential_definitions = {}
         revocation_registries = {}
 
+        if os.path.isfile("schemas.pickle"):
+            with open("schemas.pickle", "rb") as fr:
+                schemas = pickle.load(fr)
+        if os.path.isfile("credential_definitions.pickle"):
+            with open("credential_definitions.pickle", "rb") as fr:
+                credential_definitions = pickle.load(fr)
+        if os.path.isfile("revocation_registries.pickle"):
+            with open("revocation_registries.pickle", "rb") as fr:
+                revocation_registries = pickle.load(fr)
+
         async with ledger:
             for credential in credentials.values():
                 schema_id = credential["schema_id"]
@@ -324,6 +336,16 @@ class PresentationManager:
                         ] = RevocationRegistry.from_definition(
                             await ledger.get_revoc_reg_def(revocation_registry_id), True
                         )
+
+        if not os.path.isfile("schemas.pickle"):
+            with open("schemas.pickle", "wb") as fw:
+                pickle.dump(schemas, fw)
+        if not os.path.isfile("credential_definitions.pickle"):
+            with open("credential_definitions.pickle", "wb") as fw:
+                pickle.dump(credential_definitions, fw)
+        if not os.path.isfile("revocation_registries.pickle"):
+            with open("revocation_registries.pickle", "wb") as fw:
+                pickle.dump(revocation_registries, fw)
 
         # Get delta with non-revocation interval defined in "non_revoked"
         # of the presentation request or attributes
